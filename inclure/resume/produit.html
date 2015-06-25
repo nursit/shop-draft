@@ -1,0 +1,26 @@
+[(#REM)
+
+  Squelette Presentation resumee d'un produit dans une liste
+  Distribue sous licence GPL
+
+]
+<BOUCLE_resume_produit(PRODUITS) {id_produit} {statut?}>
+<produit class="entry produit hentry" itemscope itemtype="http://schema.org/Product">
+	<strong class="h3-like entry-title" itemprop="name"><a href="#URL_PRODUIT" rel="bookmark" itemprop="url">[(#ENV{logo_rubrique,' '}|?{#LOGO_PRODUIT_RUBRIQUE,#LOGO_PRODUIT}|image_reduire{#ENV{largeur_logo,-1},#ENV{hauteur_logo,-1}}|inserer_attribut{itemprop,image}|responsive_logo)]#TITRE<span
+		class="read-more hide"><i class="icon-chevron-right" title="<:zcore:lire_la_suite|attribut_html:><:zcore:lire_la_suite_de|attribut_html:>&laquo;[(#TITRE|attribut_html)]&raquo;"></i></span></a></strong>
+	<p class="publication">
+		<meta itemprop='productID' content='ref:[(#REFERENCE|attribut_html)]'/>
+		[<span class="ref"><abbr title="<:shop:reference:> [(#REFERENCE|attribut_html)]">(#REFERENCE)</abbr></span>][<span class="price"><span class="sep">, </span><i class="icon-barcode"></i> <:shop:prix:> (#PRIX|affiche_prix)</span>]
+	</p>
+	[<div class="#EDIT{intro} introduction entry-content" itemprop="description">(#INTRODUCTION{#ENV{coupe,300}})</div>]
+	<p class="postmeta">
+	<BOUCLE_nb_commentaires(FORUMS) {id_produit}{plat} />[(#TOTAL_BOUCLE|oui)
+		<span class="comments">
+		<span class="sep">|</span>
+		<a[ href="(#URL_PRODUIT|ancre_url{comments})"] class="nb_commentaires" [title="(#TOTAL_BOUCLE|singulier_ou_pluriel{zcore:info_1_commentaire,zcore:info_nb_commentaires}|attribut_html)"]>[<i class="icon-comment"></i> (#TOTAL_BOUCLE)]</a>
+		</span>
+		]
+	<//B_nb_commentaires>
+	</p>
+</produit>
+</BOUCLE_resume_produit>

@@ -1,0 +1,64 @@
+<BOUCLE_content(PRODUITS){id_produit}>
+<article itemscope itemtype="http://schema.org/Product">
+	<header class="cartouche">
+		[(#LOGO_PRODUIT|image_reduire{200,200}|inserer_attribut{itemprop,image})]
+		<h1><span class="#EDIT{titre}" itemprop="name">#TITRE</span>[
+			<small class="#EDIT{prix} prix">(#PRIX|affiche_prix)</small>
+		]</h1>
+		<p class="publication">
+			[<span class="ref"><:reference:> (#REFERENCE)</span>]
+			<meta itemprop='productID' content='ref:[(#REFERENCE|attribut_html)]'/>
+		</p>
+
+		[(#REM) Inclure le modele des liens de traductions ]
+		<div class="postmeta">
+			<BOUCLE_nb_commentaires(FORUMS) {id_produit}{plat} />[(#TOTAL_BOUCLE|oui)
+				<span class="comments">
+				<span class="sep">|</span>
+				<a[ href="(#REM|ancre_url{comments})"] [title="(#TOTAL_BOUCLE|singulier_ou_pluriel{zcore:info_1_commentaire,zcore:info_nb_commentaires}|attribut_html)"]>[<i class="icon-comment"></i> (#TOTAL_BOUCLE)]</a>
+				</span>
+				]
+			<//B_nb_commentaires>
+			<B_tags>
+			<span class="tags">
+				<span class="sep">|</span>
+				<ul class="inline">
+					<BOUCLE_tags(MOTS){id_produit}>
+					<li><a class="label" href="#URL_MOT"><i class="icon-tag"></i> #TITRE</a></li>
+					</BOUCLE_tags>
+				</ul>
+			</span>
+			</B_tags>
+		</div>
+
+	</header>
+
+	<div class="main">
+		[<div class="#EDIT{texte} texte surlignable" itemprop="description">(#TEXTE|adaptive_images)</div>]
+
+		[(#BOUTON_ACTION{<i class="icon-plus icon-white"></i>
+			<:paniers:action_ajouter:>,
+			#URL_ACTION_AUTEUR{
+				remplir_panier,
+				produit-#ID_PRODUIT-1,
+				#URL_PAGE{panier}|parametre_url{retour,#URL_RUBRIQUE|urlencode}},btn-primary btn-large pull-right
+		})]
+	</div>
+
+	<footer>
+		[<div class="notes"><h2><:info_notes:></h2>(#NOTES)</div>]
+	</footer>
+
+	<aside>
+		[(#REM) Gestion du portfolio et des documents ]
+		[(#INCLURE{fond=inclure/documents,id_objet=#ID_PRODUIT,objet=produit})]
+
+		[(#REM) Forum de l'produit
+		NB : pour desactiver les forums de l'produit, supprimez simplement la ligne ci-dessous ]
+		[(#REM)
+		< INCLURE{fond=inclure/forum,id_objet=#ID_PRODUIT,objet=produit,repondre_url=(\#PARAMETRES_FORUM|url_reponse_forum),repondre_titre=<:repondre_produit:>} />
+		]
+	</aside>
+
+</article>
+</BOUCLE_content>

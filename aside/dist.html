@@ -1,0 +1,12 @@
+<?php
+if (isset($GLOBALS['visiteur_session']['id_panier']) AND $GLOBALS['visiteur_session']['id_panier']) {
+?>
+<INCLURE{fond=inclure/mini-panier,env} />
+<?php } ?>
+
+[(#REM) Menu de navigation par rubriques ]
+<INCLURE{fond=inclure/rubriques,id_rubrique} />
+
+<div class="form-search">
+#FORMULAIRE_RECHERCHE
+</div>

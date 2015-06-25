@@ -1,0 +1,17 @@
+#CACHE{0}
+<div class="well well-small mini-panier clearfix">
+	<h2 class="h6 titre"><i class="icon-shopping-cart"></i> Mon panier</h2>
+	<p class="detail">
+		<span class="produits">[(#SESSION{id_panier}|paniers_nombre_produits|singulier_ou_pluriel{'paniers:produit_un', 'paniers:produits_plusieurs'})]</span>
+		<span class="sep">|</span>
+		<span class="prix">[(#PRIX*{panier,#SESSION{id_panier}}|affiche_prix)]</span>
+	</p>
+	[(#SI_PAGE{panier}|non)
+	<p class="lien">[(#URL_PAGE{panier}|lien_ou_expose{<:paniers:voir_mon_panier:>})]</p>
+	]
+</div>
+<style>
+.mini-panier .titre {margin-bottom: 0.375em}
+.mini-panier .detail {text-align:right;margin-bottom:0.375em}
+.mini-panier .lien {text-align:right;margin-bottom: 0}
+</style>

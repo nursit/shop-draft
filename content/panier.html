@@ -1,0 +1,30 @@
+<section class="panier">
+	<header class="cartouche">
+		<h1><:shop:votre_panier:></h1>
+	</header>
+
+	<div class="main">
+		[(#FORMULAIRE_PANIER)]
+
+		[<div class="#EDIT{texte} texte surlignable" itemprop="description">(#TEXTE|adaptive_images)</div>]
+
+		<div class="actions">
+			[<a href="(#ENV{retour})"><i class="icon-chevron-left"></i> <:shop:retour_achats:></a>]
+			<BOUCLE_panier(PANIERS){id_panier=#SESSION{id_panier}}>
+			[(#BOUTON_ACTION{
+				<:shop:action_commander_panier:> <i class="icon-chevron-right icon-white"></i>,
+				#URL_ACTION_AUTEUR{
+					commandes_paniers,
+					#ID_PANIER,
+					#URL_PAGE{commande}},btn-primary btn-large pull-right
+			})]
+			</BOUCLE_panier>
+		</div>
+
+	</div>
+
+	<footer>
+		[<div class="notes"><h2><:info_notes:></h2>(#NOTES)</div>]
+	</footer>
+
+</section>
