@@ -1,12 +1,10 @@
 <section class="panier">
 	<header class="cartouche">
-		<h1><:shop:votre_panier:></h1>
+		<h1><:shop:titre_votre_panier:></h1>
 	</header>
 
 	<div class="main">
 		[(#FORMULAIRE_PANIER)]
-
-		[<div class="#EDIT{texte} texte surlignable" itemprop="description">(#TEXTE|adaptive_images)</div>]
 
 		<div class="actions">
 			[<a href="(#ENV{retour})"><i class="icon-chevron-left"></i> <:shop:retour_achats:></a>]
@@ -15,7 +13,7 @@
 				<:shop:action_commander_panier:> <i class="icon-chevron-right icon-white"></i>,
 				#URL_ACTION_AUTEUR{
 					commandes_paniers,
-					#ID_PANIER,
+					#ID_PANIER-1,
 					#URL_PAGE{commande}},btn-primary btn-large pull-right
 			})]
 			</BOUCLE_panier>
