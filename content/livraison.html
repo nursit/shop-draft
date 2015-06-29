@@ -40,6 +40,14 @@
 	      </div>
 		  </div>
 	  </div>
+		<script>
+			jQuery(function(){
+				if (!jQuery('.profil_modif').is(':visible') && jQuery('.profil_modif .reponse_formulaire').length){
+					var message = jQuery('.profil_modif .reponse_formulaire').clone();
+					jQuery('.profil_show').prepend(message);
+				}
+			})
+		</script>
 		</BOUCLE_auteur>
 
 		[(#GET{modif}|non)
