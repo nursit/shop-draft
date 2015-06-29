@@ -36,7 +36,7 @@ function shop_liste_etapes($id_panier){
 	if (isset($lesetapes["$id_panier"]))
 		return $lesetapes["$id_panier"];
 
-	if ($id_auteur = sql_fetsel('id_auteur','spip_paniers','id_panier='.intval($id_panier))){
+	if ($id_auteur = intval(sql_getfetsel('id_auteur','spip_paniers','id_panier='.intval($id_panier)))){
 		$etapes = array_diff($etapes,array('qui'));
 	}
 
