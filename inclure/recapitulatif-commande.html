@@ -1,0 +1,33 @@
+[(#REM) Récapitulatif de la commande ]
+<BOUCLE_commande(COMMANDES){id_commande}>
+<div class='formulaire_spip recapitulatif-commande'>
+	<div class="row-fluid">
+		<div class="span4">
+			<h3><:shop:recapitulatif_commande:></h3>
+
+		</div>
+		<div class="span8">
+			<p><strong><:shop:titre_votre_commande{id=#ID_COMMANDE}:></strong></p>
+			<INCLURE{fond=inclure/commande,id_commande} />
+		</div>
+	</div>
+	[(#ENV{livraison,''}|oui)
+	<div class="row-fluid">
+		<div class="span4">
+			<h3><:shop:recapitulatif_commande_adresse_livraison:></h3>
+		</div>
+		<div class="span8">
+			<INCLURE{fond=modeles/client_adresse_livraison,id_auteur} />
+		</div>
+	</div>
+	]
+	<style>
+		.recapitulatif-commande p {margin-bottom: 0}
+		[(#ENV{livraison,''}|non)
+		.recapitulatif-commande table.commande {margin-bottom: 0}]
+		.recapitulatif-commande table.commande thead,
+		.recapitulatif-commande table.commande tbody {display: none;}
+		.recapitulatif-commande table.commande tfoot td {padding:0}
+	</style>
+</div>
+</BOUCLE_commande>

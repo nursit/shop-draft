@@ -1,9 +1,59 @@
+<?php
+if (isset($GLOBALS['visiteur_session']['id_auteur'])
+  AND $GLOBALS['visiteur_session']['id_auteur']
+  AND $retour=generer_url_public('commande')){
+	include_spip('inc/filtres');
+	sinon_interdire_acces(false,$retour);
+}
+?>
 <section>
 	<header class="cartouche">
 		<h1><:lien_connecter:> <small>#NOM_SITE_SPIP</small></h1>
 	</header >
 
 	<div class="main">
-		[(#FORMULAIRE_LOGIN{#ENV{url}})]
+		<div class="identification formulaire_spip">
+			<div class="row-fluid">
+				<div class="span6">
+					<h2>Vous inscrire</h2>
+					[(#FORMULAIRE_INSCRIPTION_RAPIDE{6forum,#ENV{url,#URL_PAGE{commande}}})]
+				</div>
+				<div class="span6">
+					<h2>Déjà Client ?</h2>
+					<div class="ajax">
+						[(#FORMULAIRE_LOGIN{#ENV{url,#URL_PAGE{commande}}})]
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </section>
+<style>
+	.identification.formulaire_spip {
+		padding-right: 0;
+		overflow: hidden;
+	}
+	.identification .formulaire_spip {
+		padding-left: 0;
+		margin: 0;
+		background: none;
+	}
+	.identification .formulaire_spip legend{
+		display: none;
+	}
+	.identification .formulaire_spip .boutons {
+		padding-right: 0;
+		margin-right: 0;
+		margin-left: 0;
+	}
+	.formulaire_login form input.text, .formulaire_login form input.password {
+		width: auto;
+		max-width: 80%;
+	}
+	.formulaire_login .editer_session {display: none;}
+</style>
+<script>
+	jQuery(function(){
+		jQuery('.formulaire_login .editer_session #session_remember').prop('checked',true);
+	})
+</script>

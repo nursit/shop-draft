@@ -1,4 +1,4 @@
-#CACHE{1} [(#REM) : todo passer par un formulaire commande pour eviter ce vilain cache]
+#CACHE{0} [(#REM) : todo passer par un formulaire commande pour eviter ce vilain cache]
 <section class="panier">
 	<BOUCLE_commande(COMMANDES){id_commande=#SESSION{id_commande}}{statut=encours}{0,1}{!par date}>
 	<header class="cartouche">
@@ -23,19 +23,21 @@
 
 		</div>]
 
-		[(#REM) Formulaire pour payer ]
-		[<div class='formulaire_spip formulaire_spip_payer'>
-			<div class='outline'>
-				(#FORMULAIRE_PAYER_ACTE{
-					#PRIX*,
-					#ARRAY{
-						montant_ht,#PRIX_HT*,
-						id_commande,#ID_COMMANDE,
-						id_auteur,#ID_AUTEUR,
-					}
-				})
-			</div>
-		</div>]
+		<div class="actions">
+			#SET{etapes,#SESSION{id_panier}|shop_liste_etapes}
+			[(#VAL{livraison}|in_array{#GET{etapes}}|oui)
+			<a class="btn btn-primary btn-large pull-right"
+				href="#URL_PAGE{livraison}">
+				<:shop:action_choisir_livraison:> <i class="icon-chevron-right icon-white"></i>
+			</a>
+			]
+			[(#VAL{livraison}|in_array{#GET{etapes}}|non)
+			<a class="btn btn-primary btn-large pull-right"
+				href="#URL_PAGE{paiement}">
+				<:shop:action_payer_commande:> <i class="icon-chevron-right icon-white"></i>
+			</a>
+			]
+		</div>
 	</div>
 
 	<footer>

@@ -1,0 +1,9 @@
+#CACHE{0}
+<ul class="breadcrumb">
+	#SET{etapes,#SESSION{id_panier}|shop_liste_etapes}
+	#SET{done,' '}
+	<BOUCLE_etapes(POUR){tableau #GET{etapes}}>
+	<li class="[(#GET{done}|non)active][(#SI_PAGE{#VALEUR})on]">[(#URL_PAGE{#VALEUR}|lien_ou_expose{[(#VALEUR|shop_titre_etape)],#GET{done}|non|ou{#SI_PAGE{#VALEUR}}?{span}})][<span class="divider">(#VALEUR|=={#GET{etapes}|end}|non)&gt; </span>]</li>
+	#SET{done,#GET{done}|et{#SI_PAGE{#VALEUR}|non}}
+	</BOUCLE_etapes>
+</ul>

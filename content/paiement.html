@@ -1,0 +1,44 @@
+#CACHE{0} [(#REM) : todo passer par un formulaire commande pour eviter ce vilain cache]
+<section class="panier">
+	<BOUCLE_commande(COMMANDES){id_commande=#SESSION{id_commande}}{statut=encours}{0,1}{!par date}>
+	<header class="cartouche">
+		<h1><:shop:titre_paiement{id=#ID_COMMANDE}:></h1>
+	</header>
+
+	<div class="main">
+		<INCLURE{fond=inclure/recapitulatif-commande,id_commande,livraison=oui} />
+
+		[(#REM) Formulaire pour payer ]
+		[<div class='formulaire_spip formulaire_spip_payer'>
+			<div class='outline'>
+				(#FORMULAIRE_PAYER_ACTE{
+					#PRIX*,
+					#ARRAY{
+						montant_ht,#PRIX_HT*,
+						id_commande,#ID_COMMANDE,
+						id_auteur,#ID_AUTEUR,
+					}
+				})
+			</div>
+		</div>]
+	</div>
+
+	<footer>
+		[<div class="notes"><h2><:info_notes:></h2>(#NOTES)</div>]
+	</footer>
+	</BOUCLE_commande>
+		<header class="cartouche">
+			<h1><:shop:titre_aucune_commande:></h1>
+		</header>
+		<div class="main">
+			<p class="warning">
+				<:shop:explication_aucune_commande_en_cours:>
+			</p>
+		</div>
+	<//B_commande>
+</section>
+<style>
+	//.formulaire_spip_payer {padding: 0;background: none}
+	.formulaire_spip_payer .boutons {margin: 0;padding-left: 0;padding-right: 0;border-top: 0;background: none;}
+	.formulaire_spip_payer .payer_mode {border-bottom: 2px solid #fff;margin-bottom: 1.5em;}
+</style>
