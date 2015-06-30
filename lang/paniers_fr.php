@@ -7,6 +7,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	'panier_recalculer' => '<i class="icon-refresh"></i> Recalculer',
 	'vider_le_panier' => '<i class="icon-trash"></i> Vider le panier',
+	'dont_total_taxe' => 'dont TVA',
 );
 
 ?>
