@@ -1,0 +1,13 @@
+[(#REM) Produits trouves ]
+<B_produits>
+<div class="liste resultats produits">
+	#ANCRE_PAGINATION
+	<h2 class="h2">[(#ENV{titre}|sinon{<:shop:produits:>}) ](#GRAND_TOTAL)</h2>
+	<ul class="liste-items">
+		<BOUCLE_produits(PRODUITS) {recherche}{id_secteur?}{id_rubrique?}{par points}{inverse} {pagination #ENV{pagination,20}}>
+		<li class="item"><a href="#URL_PRODUIT">#TITRE</a></li>
+		</BOUCLE_produits>
+	</ul>
+	[<div class="pagination">(#PAGINATION)</div>]
+</div>
+</B_produits>

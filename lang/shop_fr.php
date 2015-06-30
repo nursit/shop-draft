@@ -10,6 +10,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'prix' => 'Prix',
 	'reference' => 'Référence',
 	'produits_rubrique' => 'Les produits dans cette rubrique',
+	'produits' => 'Produits',
 	'action_commander_panier' => 'Commander',
 	'action_payer_commande' => 'Payer',
 	'action_choisir_livraison' => 'Choisir la livraison',
@@ -21,6 +22,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'titre_aucune_commande' => 'Aucune commande',
 	'titre_livraison' => 'Livraison',
 	'titre_paiement' => 'Paiement',
+	'titre_nos_derniers_produits' => 'Nos derniers produits',
 
 	'titre_votre_adresse_livraison' => 'Votre adresse de livraison',
 	'bouton_modifier_adresse' => 'Modifier l\'adresse',
