@@ -2,7 +2,7 @@
 <section class="panier">
 	<BOUCLE_commande(COMMANDES){id_commande=#SESSION{id_commande}}{statut=encours}{0,1}{!par date}>
 	<header class="cartouche">
-		<h1><:shop:titre_votre_commande{id=#ID_COMMANDE}:></h1>
+		<h1><:shop:titre_votre_commande{id=#REFERENCE}:></h1>
 	</header>
 
 	<div class="main">
