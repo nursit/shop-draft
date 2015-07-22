@@ -24,6 +24,11 @@ function affiche_prix($valeur,$decimales=2,$devise="EUR"){
 	return $price.$devise;
 }
 
+function filtre_affiche_monnaie_dist($valeur,$decimales=2,$unite=true){
+	if ($unite===true) $devise="EUR"; else $devise=$unite;
+	return affiche_prix($valeur,$decimales,$devise);
+}
+
 
 function shop_titre_etape($etape){
 	return _T('shop:titre_etape_'.$etape);
