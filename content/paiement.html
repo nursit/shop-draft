@@ -6,7 +6,7 @@
 	</header>
 
 	<div class="main">
-		<INCLURE{fond=inclure/recapitulatif-commande,id_commande,livraison=oui} />
+		<INCLURE{fond=inclure/recapitulatif-commande,id_commande,livraison=oui,_hash=#ID_COMMANDE|commandes_hash} />
 
 		[(#REM) Formulaire pour payer ]
 		[<div class='formulaire_spip formulaire_spip_payer'>

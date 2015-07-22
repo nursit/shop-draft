@@ -9,7 +9,7 @@
 		[(#REM) Récapitulatif de la commande ]
 		[<div class='formulaire_spip'>
 			<h3 class="hide"><:shop:recapitulatif_commande:></h3>
-				(#INCLURE{fond=inclure/commande,id_commande})
+				(#INCLURE{fond=inclure/commande,id_commande,_hash=#ID_COMMANDE|commandes_hash})
 
 			[<div class='actions'>
 				(#BOUTON_ACTION{
