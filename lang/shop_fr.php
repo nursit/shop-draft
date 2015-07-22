@@ -24,18 +24,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'titre_paiement' => 'Paiement',
 	'titre_nos_derniers_produits' => 'Nos derniers produits',
 
-	'titre_votre_adresse_livraison' => 'Votre adresse de livraison',
-	'bouton_modifier_adresse' => 'Modifier l\'adresse',
-
 	'titre_etape_panier' => 'Mon panier',
 	'titre_etape_qui' => 'Identification',
 	'titre_etape_commande' => 'Commande',
 	'titre_etape_livraison' => 'Livraison',
 	'titre_etape_paiement' => 'Paiement',
-
-	'explication_privacy_info_perso' => 'Ces informations sont uniquement utilisées pour gérer la livraison de votre commande,
-et ne seront jamais communiquées à des tiers. Nous ne pratiquons ni l\'achat, ni la vente, ni l\'échange de fichiers.',
-
 
 	'bouton_annuler_commande' => '<i class="icon-trash"></i> Annuler la commande',
 

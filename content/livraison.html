@@ -1,64 +1,15 @@
 #CACHE{0} [(#REM) : todo passer par un formulaire commande pour eviter ce vilain cache]
 <section class="panier">
+
 	<BOUCLE_commande(COMMANDES){id_commande=#SESSION{id_commande}}{statut=encours}{0,1}{!par date}>
 	<header class="cartouche">
 		<h1><:shop:titre_livraison{id=#REFERENCE}:></h1>
 	</header>
 
 	<div class="main">
-		<INCLURE{fond=inclure/recapitulatif-commande,id_commande} />
-
-		<BOUCLE_auteur(AUTEURS){tous}{id_auteur=#SESSION{id_auteur}}>
-		<div class="section_profil profil clearfix">
-	    <h2><span><:shop:titre_votre_adresse_livraison:></span></h2>
-			#SET{modif,#ENV{modif,''}}
-			[(#NAME|trim|non)#SET{modif,' '}]
-			[(#ADRESSE|trim|non)#SET{modif,' '}]
-			[(#ADRESSE_CP|trim|non)#SET{modif,' '}]
-			[(#ADRESSE_VILLE|trim|non)#SET{modif,' '}]
-	    <div class="profil_show[(#GET{modif}|oui)hide]">
-		    <a class="btn btn-small modifier right" href="[(#SELF|parametre_url{modif,oui})]"><i class="icon-pencil"></i> <:shop:bouton_modifier_adresse:></a>
-			  <p>
-				  [<strong>(#PRENOM|concat{' ',#NAME}|trim|sinon{#NOM})</strong><br />]
-				  [(#SOCIETE)<br />]
-				  [(#ADRESSE|nl2br)<br />]
-				  [(#ADRESSE_CP|concat{' ',#ADRESSE_VILLE}|trim)<br />]
-				  <BOUCLE_pays_code(PAYS){code=#ADRESSE_PAYS}>#NOM<br /></BOUCLE_pays_code>
-				  <br />
-				  [<i>Tel&nbsp;:</i> (#TEL_FIXE)<br />]
-				  [<i>Tel&nbsp;:</i> (#TEL_MOBILE)<br />]
-				  [<i class="icon-envelope"></i> (#EMAIL)<br />]
-			  </p>
-	    </div>
-	    <div class="profil_modif[(#GET{modif}|non)hide]">
-		    [(#ENV{modif,''}|=={#GET{modif}}|oui)
-	      <a class="btn btn-small fermer right" href="[(#SELF|parametre_url{modif,''})]"><i class=" icon-remove-sign"></i> <:profils:bouton_fermer:></a>
-		    ]
-	      <p class="small"><:shop:explication_privacy_info_perso:></p>
-	      <div class="ajax">
-	        #FORMULAIRE_EDITER_ADRESSE_PROFIL{#ID_AUTEUR}
-	      </div>
-		  </div>
-	  </div>
-		<script>
-			jQuery(function(){
-				if (!jQuery('.profil_modif').is(':visible') && jQuery('.profil_modif .reponse_formulaire').length){
-					var message = jQuery('.profil_modif .reponse_formulaire').clone();
-					jQuery('.profil_show').prepend(message);
-				}
-			})
-		</script>
-		</BOUCLE_auteur>
-
-		[(#GET{modif}|non)
-		<div class="actions">
-			<a class="btn btn-primary btn-large pull-right"
-				href="#URL_PAGE{paiement}">
-				<:shop:action_payer_commande:> <i class="icon-chevron-right icon-white"></i>
-			</a>
+		<div class="ajax">
+			[(#FORMULAIRE_ADRESSER_COMMANDE{#SESSION{id_commande},#URL_PAGE{paiement},<:shop:action_payer_commande:>})]
 		</div>
-		]
-
 	</div>
 
 	<footer>
@@ -75,8 +26,3 @@
 		</div>
 	<//B_commande>
 </section>
-<style>
-	table.commande caption {display: none}
-	.formulaire_spip_payer .boutons {margin: 0;padding-left: 0;padding-right: 0;border-top: 0;background: none;}
-	.formulaire_spip_payer .payer_mode {border-bottom: 2px solid #fff;margin-bottom: 1.5em;}
-</style>
