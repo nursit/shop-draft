@@ -1,0 +1,17 @@
+<BOUCLE_trans(TRANSACTIONS){id_transaction}{id_commande>0}><BOUCLE_cde(COMMANDES){id_commande}{statut?}>
+[(#LIVRAISON_NOM)]
+[<br />(#LIVRAISON_SOCIETE)]
+[<br />(#LIVRAISON_ADRESSE|propre|PtoBR)]
+[<br />(#LIVRAISON_ADRESSE_CP|concat{' ',#LIVRAISON_ADRESSE_VILLE}|trim)]
+<BOUCLE_pays_code(PAYS){code=#LIVRAISON_ADRESSE_PAYS}><br />#NOM</BOUCLE_pays_code>
+</BOUCLE_cde></BOUCLE_trans>
+<BOUCLE_aut(AUTEURS){id_auteur}{statut?}>
+[(#NAME)][ (#PRENOM)]
+[<br />(#SOCIETE)]
+[<br />(#ADRESSE|propre|PtoBR)]
+[<br />(#ADRESSE_CP|concat{' ',#ADRESSE_VILLE}|trim)]
+<BOUCLE_pays_code(PAYS){code=#ADRESSE_PAYS}><br />#NOM</BOUCLE_pays_code>
+[<br />(#EMAIL)]
+[<br />Code Client : (#ID_AUTEUR)]
+</BOUCLE_aut>
+<//B_trans>
