@@ -9,6 +9,9 @@
 		<div class="span8">
 			<p><strong><:shop:titre_votre_commande{id=#REFERENCE}:></strong></p>
 			<INCLURE{fond=inclure/commande,id_commande} />
+			<BOUCLE_mode(COMMANDES_DETAILS){id_commande}{objet=livraisonmode}{0,1}{si #ENV{livraison,''}}>
+			[<div class="info">(#DESCRIPTIF)</div>]
+			</BOUCLE_mode>
 		</div>
 	</div>
 	[(#ENV{livraison,''}|oui)
@@ -17,7 +20,7 @@
 			<h3><:shop:recapitulatif_commande_adresse_livraison:></h3>
 		</div>
 		<div class="span8">
-			<INCLURE{fond=modeles/client_adresse_livraison,id_auteur} />
+			<INCLURE{fond=modeles/client_adresse_livraison,id_auteur,id_commande} />
 		</div>
 	</div>
 	]
