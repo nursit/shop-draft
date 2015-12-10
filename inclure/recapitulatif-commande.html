@@ -1,7 +1,7 @@
-[(#REM) Récapitulatif de la commande ]
+[(#REM) Recapitulatif de la commande ]
 <BOUCLE_commande(COMMANDES){id_commande}>
 <div class='formulaire_spip recapitulatif-commande'>
-	<div class="row-fluid">
+	<div class="row-fluid p">
 		<div class="span4">
 			<h3><:shop:recapitulatif_commande:></h3>
 
@@ -15,14 +15,26 @@
 		</div>
 	</div>
 	[(#ENV{livraison,''}|oui)
-	<div class="row-fluid">
+	<div class="row-fluid p">
 		<div class="span4">
-			<h3><:shop:recapitulatif_commande_adresse_livraison:></h3>
+			<h3><:shop:recapitulatif_commande_adresse_livraison:>
+			[(#FACTURATION_NOM|non)<br /><small><i><:livraison:info_facturation_meme_adresse:></i></small>]
+			</h3>
 		</div>
 		<div class="span8">
 			<INCLURE{fond=modeles/client_adresse_livraison,id_auteur,id_commande} />
 		</div>
 	</div>
+	[(#FACTURATION_NOM|oui)
+	<div class="row-fluid p">
+		<div class="span4">
+			<h3><:shop:recapitulatif_commande_adresse_facturation:></h3>
+		</div>
+		<div class="span8">
+			<INCLURE{fond=modeles/client_adresse_facturation,id_auteur,id_commande} />
+		</div>
+	</div>
+	]
 	]
 	<style>
 		.recapitulatif-commande p {margin-bottom: 0}
@@ -31,6 +43,7 @@
 		.recapitulatif-commande table.commande thead,
 		.recapitulatif-commande table.commande tbody {display: none;}
 		.recapitulatif-commande table.commande tfoot td {padding:0}
+		.row-fluid :last-child {margin-bottom: 0}
 	</style>
 </div>
 </BOUCLE_commande>

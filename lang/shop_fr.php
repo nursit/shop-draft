@@ -17,6 +17,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'retour_achats' => 'Retourner à mes achats',
 	'recapitulatif_commande' => 'Récapitulatif :',
 	'recapitulatif_commande_adresse_livraison' => 'Expédiée à&nbsp;:',
+	'recapitulatif_commande_adresse_facturation' => 'Facture à&nbsp;:',
 	'titre_votre_panier' => 'Mon panier',
 	'titre_votre_commande' => 'Ma commande #@id@',
 	'titre_aucune_commande' => 'Aucune commande',
